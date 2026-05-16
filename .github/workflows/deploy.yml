@@ -14,6 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate intro audio (female voice)
+        run: |
+          pip install edge-tts
+          python -m edge_tts --voice ar-SA-ZariyahNeural --text "مَرحبا طالباتٌ الابتدائية الثانية والاربعون" --write-media public/audio/welcome.mp3
+          python -m edge_tts --voice ar-SA-ZariyahNeural --text "جاهزون للمسابقة" --write-media public/audio/ready.mp3
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20

@@ -5,6 +5,7 @@ import { warmUpAudio } from './utils/quizSounds';
 import { unlockIntroAudio } from './utils/introAudio';
 import { startBackgroundMusic } from './utils/backgroundMusic';
 import mwAvatar from '../assets/mw-avatar.png';
+import { WELCOME_MESSAGE, READY_MESSAGE } from './config/messages';
 
 export type Question = {
   id: string;
@@ -22,8 +23,8 @@ export type QuizSettings = {
 };
 
 export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
-  welcomeMessage: 'مَرحبا طالباتٌ الابتدائية الثانية والاربعون',
-  readyMessage: 'جاهزون للمسابقة',
+  welcomeMessage: WELCOME_MESSAGE,
+  readyMessage: READY_MESSAGE,
 };
 
 const SETTINGS_STORAGE_KEY = 'mw-quiz-settings';

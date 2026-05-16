@@ -1,10 +1,8 @@
-import { DEFAULT_QUIZ_SETTINGS } from '../App';
 import { duckBackgroundMusic, unduckBackgroundMusic } from './backgroundMusic';
 
 const audioBase = `${import.meta.env.BASE_URL}audio/`;
 
 let currentAudio: HTMLAudioElement | null = null;
-let currentObjectUrl: string | null = null;
 const ttsCache = new Map<string, string>();
 
 function clearPlayback() {
@@ -13,7 +11,6 @@ function clearPlayback() {
     currentAudio.currentTime = 0;
     currentAudio = null;
   }
-  currentObjectUrl = null;
 }
 
 async function playSrc(src: string) {
@@ -30,12 +27,6 @@ async function playSrc(src: string) {
   } finally {
     unduckBackgroundMusic();
   }
-}
-
-function isDefaultMessage(text: string, type: 'welcome' | 'ready') {
-  const trimmed = text.trim();
-  if (type === 'welcome') return trimmed === DEFAULT_QUIZ_SETTINGS.welcomeMessage;
-  return trimmed === DEFAULT_QUIZ_SETTINGS.readyMessage;
 }
 
 async function fetchDynamicTTS(text: string): Promise<string | null> {
@@ -69,29 +60,29 @@ export function unlockIntroAudio() {
   }).catch(() => {});
 }
 
-/** صوت بنت — يقرأ النص اللي تكتبينه */
+/** صوت بنت — ملفات MP3 على GitHub، توليد ديناميكي محلياً */
 export async function playIntroSpeech(text: string, type: 'welcome' | 'ready') {
   const trimmed = text.trim();
   if (!trimmed) return;
 
   stopIntroSpeech();
 
-  if (isDefaultMessage(trimmed, type)) {
-    try {
-      await playSrc(bundledSrc(type));
-      return;
-    } catch {
-      /* يكمل للتوليد الديناميكي */
+  if (import.meta.env.DEV) {
+    const dynamicUrl = await fetchDynamicTTS(trimmed);
+    if (dynamicUrl) {
+      try {
+        await playSrc(dynamicUrl);
+        return;
+      } catch {
+        /* يكمل للملف المدمج */
+      }
     }
   }
 
-  const dynamicUrl = await fetchDynamicTTS(trimmed);
-  if (dynamicUrl) {
-    try {
-      await playSrc(dynamicUrl);
-    } catch {
-      /* لا صوت */
-    }
+  try {
+    await playSrc(bundledSrc(type));
+  } catch {
+    /* لا صوت */
   }
 }
 
