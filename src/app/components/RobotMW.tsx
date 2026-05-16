@@ -3,11 +3,14 @@ import { Sparkles, Heart, Star } from 'lucide-react';
 
 type RobotMWProps = {
   mood: 'waiting' | 'correct' | 'wrong' | 'happy' | 'sad';
+  size?: 'sm' | 'md';
 };
 
-export default function RobotMW({ mood }: RobotMWProps) {
+export default function RobotMW({ mood, size = 'md' }: RobotMWProps) {
+  const compact = size === 'sm';
+
   return (
-    <div className="relative inline-block">
+    <div className={`relative inline-block ${compact ? 'scale-[0.68] origin-top -mb-8' : ''}`}>
       {/* Floating Elements */}
       <AnimatePresence>
         {(mood === 'waiting' || mood === 'correct' || mood === 'happy') && (
@@ -395,7 +398,7 @@ export default function RobotMW({ mood }: RobotMWProps) {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className={`mt-6 px-8 py-3 rounded-full shadow-2xl ${
+        className={`${compact ? 'mt-3 px-5 py-2' : 'mt-6 px-8 py-3'} rounded-full shadow-2xl ${
           mood === 'correct' || mood === 'happy'
             ? 'bg-gradient-to-r from-pink-200 to-pink-300'
             : mood === 'wrong' || mood === 'sad'
@@ -403,7 +406,11 @@ export default function RobotMW({ mood }: RobotMWProps) {
             : 'bg-gradient-to-r from-purple-200 to-pink-200'
         }`}
       >
-        <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+        <span
+          className={`font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent ${
+            compact ? 'text-lg' : 'text-2xl md:text-3xl'
+          }`}
+        >
           MW ✨
         </span>
       </motion.div>

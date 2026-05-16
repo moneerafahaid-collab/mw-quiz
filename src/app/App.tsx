@@ -83,7 +83,7 @@ export default function App() {
 
       <div className="relative z-10 container mx-auto p-4 md:p-6 h-full">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8 md:mb-12">
+        <div className="flex items-center justify-between mb-4 md:mb-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl overflow-hidden shadow-xl ring-2 ring-cyan-400/40 bg-slate-900 flex-shrink-0">
               <img
@@ -93,8 +93,8 @@ export default function App() {
               />
             </div>
             <div>
-              <h1 className="text-2xl md:text-4xl font-bold text-white">مسابقة MW</h1>
-              <p className="text-sm md:text-base text-slate-400">مع الروبوت الذكي</p>
+              <h1 className="text-xl md:text-2xl font-bold text-white">مسابقة MW</h1>
+              <p className="text-xs md:text-sm text-slate-400">مع الروبوت الذكي</p>
             </div>
           </div>
 

@@ -40,14 +40,14 @@ export default function QuizIntro({ welcomeMessage, readyMessage, onStart }: Qui
   useEffect(() => () => stopIntroSpeech(), []);
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-slate-700/50 shadow-2xl">
+    <div className="max-w-2xl mx-auto">
+      <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-5 md:p-8 border border-slate-700/50 shadow-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col items-center"
         >
-          <RobotMW mood={step === 'ready' ? 'happy' : 'waiting'} />
+          <RobotMW mood={step === 'ready' ? 'happy' : 'waiting'} size="sm" />
 
           <AnimatePresence mode="wait">
             {step === 'idle' && (

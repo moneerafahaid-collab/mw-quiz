@@ -170,17 +170,17 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="max-w-3xl mx-auto"
+        className="max-w-xl mx-auto"
       >
-        <motion.div className="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-slate-700/50 shadow-2xl">
+        <motion.div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-5 md:p-8 border border-slate-700/50 shadow-2xl">
           <div className="text-center">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: 'spring' }}
-              className="inline-block mb-6"
+              className="inline-block mb-4"
             >
-              <RobotMW mood={score >= questions.length / 2 ? 'happy' : 'sad'} />
+              <RobotMW mood={score >= questions.length / 2 ? 'happy' : 'sad'} size="sm" />
             </motion.div>
 
             <motion.div
@@ -257,12 +257,12 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="bg-slate-800/50 backdrop-blur-xl rounded-3xl p-6 md:p-10 border border-slate-700/50 shadow-2xl">
+    <div className="max-w-2xl mx-auto">
+      <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-4 md:p-6 border border-slate-700/50 shadow-2xl">
         {/* Progress Header */}
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-          <div className="flex items-center gap-4">
-            <div className="bg-slate-900/50 px-4 py-2 rounded-xl border border-slate-700">
+        <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <div className="flex items-center gap-2">
+            <div className="bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-700 text-sm">
               <span className="text-slate-400 text-sm">السؤال</span>
               <span className="text-white font-bold mx-1">{currentQuestionIndex + 1}</span>
               <span className="text-slate-500">/ {questions.length}</span>
@@ -270,22 +270,22 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
           </div>
 
           <div
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-all text-sm ${
               timerUrgent
                 ? 'bg-red-500/20 border-red-500 animate-pulse'
                 : 'bg-slate-900/50 border-slate-700'
             }`}
           >
-            <Timer className={timerUrgent ? 'text-red-400' : 'text-cyan-400'} size={20} />
-            <span className={`text-2xl font-bold tabular-nums ${timerUrgent ? 'text-red-400' : 'text-white'}`}>
+            <Timer className={timerUrgent ? 'text-red-400' : 'text-cyan-400'} size={16} />
+            <span className={`text-xl font-bold tabular-nums ${timerUrgent ? 'text-red-400' : 'text-white'}`}>
               {timeLeft}
             </span>
-            <span className="text-slate-500 text-sm">ث</span>
+            <span className="text-slate-500 text-xs">ث</span>
           </div>
 
-          <div className="bg-slate-900/50 px-4 py-2 rounded-xl border border-slate-700">
-            <span className="text-slate-400 text-sm ml-2">النقاط:</span>
-            <span className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent">
+          <div className="bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-700 text-sm">
+            <span className="text-slate-400 ml-1">النقاط:</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-purple-500 to-cyan-500 bg-clip-text text-transparent">
               {score}
             </span>
           </div>
@@ -306,7 +306,7 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
         </div>
 
         {/* Progress Bar */}
-        <div className="relative w-full bg-slate-900/50 rounded-full h-2 mb-8 overflow-hidden">
+        <div className="relative w-full bg-slate-900/50 rounded-full h-2 mb-4 overflow-hidden">
           <motion.div
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"
             initial={{ width: 0 }}
@@ -316,8 +316,8 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
         </div>
 
         {/* Robot Character */}
-        <div className="flex justify-center mb-8">
-          <RobotMW mood={gameState} />
+        <div className="flex justify-center mb-3">
+          <RobotMW mood={gameState} size="sm" />
         </div>
 
         {/* Question */}
@@ -329,8 +329,8 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="bg-slate-900/30 rounded-2xl p-6 md:p-8 mb-8 border border-slate-700/50">
-              <h2 className="text-2xl md:text-3xl text-white text-center leading-relaxed">
+            <div className="bg-slate-900/30 rounded-xl p-4 md:p-5 mb-4 border border-slate-700/50">
+              <h2 className="text-lg md:text-xl text-white text-center leading-relaxed">
                 {currentQuestion.question}
               </h2>
               {gameState === 'wrong' && selectedAnswer === null && (
@@ -339,14 +339,14 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
             </div>
 
             {/* Answer Options */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {currentQuestion.options.map((option, index) => {
                 const isSelected = selectedAnswer === index;
                 const isCorrect = index === currentQuestion.correctAnswer;
                 const showResult = gameState !== 'waiting';
 
                 let buttonClass =
-                  'relative p-5 md:p-6 rounded-2xl text-lg md:text-xl transition-all border-2 font-medium ';
+                  'relative p-3 md:p-4 rounded-xl text-base md:text-lg transition-all border-2 font-medium ';
 
                 if (!showResult) {
                   buttonClass +=
