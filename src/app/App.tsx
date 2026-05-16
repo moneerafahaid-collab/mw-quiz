@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import AdminPanel from './components/AdminPanel';
 import QuizGame from './components/QuizGame';
 import { warmUpAudio } from './utils/quizSounds';
@@ -22,14 +22,32 @@ export type QuizSettings = {
 };
 
 export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
-  welcomeMessage: 'مرحبا طالبات',
+  welcomeMessage: 'مَرحبا طالباتٌ الابتدائية الثانية والاربعون',
   readyMessage: 'جاهزون للمسابقة',
 };
+
+const SETTINGS_STORAGE_KEY = 'mw-quiz-settings';
+
+function loadQuizSettings(): QuizSettings {
+  try {
+    const saved = localStorage.getItem(SETTINGS_STORAGE_KEY);
+    if (saved) return { ...DEFAULT_QUIZ_SETTINGS, ...JSON.parse(saved) };
+  } catch {
+    /* ignore */
+  }
+  return DEFAULT_QUIZ_SETTINGS;
+}
 
 export default function App() {
   const [view, setView] = useState<'admin' | 'quiz'>('admin');
   const [quizSession, setQuizSession] = useState(0);
-  const [quizSettings, setQuizSettings] = useState<QuizSettings>(DEFAULT_QUIZ_SETTINGS);
+  const [quizSettings, setQuizSettingsState] = useState<QuizSettings>(loadQuizSettings);
+
+  const setQuizSettings = useCallback((settings: QuizSettings) => {
+    setQuizSettingsState(settings);
+    localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+  }, []);
+
   const [questions, setQuestions] = useState<Question[]>([
     {
       id: '1',

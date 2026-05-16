@@ -59,7 +59,7 @@ export default function AdminPanel({
             <label className="block text-sm text-slate-400 mb-2">الرسالة الأولى</label>
             <input
               type="text"
-              placeholder="مرحبا طالبات"
+              placeholder="مَرحبا طالباتٌ الابتدائية الثانية والاربعون"
               value={quizSettings.welcomeMessage}
               onChange={(e) =>
                 setQuizSettings({ ...quizSettings, welcomeMessage: e.target.value })
