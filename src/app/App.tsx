@@ -3,7 +3,6 @@ import AdminPanel from './components/AdminPanel';
 import QuizGame from './components/QuizGame';
 import { warmUpAudio } from './utils/quizSounds';
 import { unlockIntroAudio } from './utils/introAudio';
-import { startBackgroundMusic } from './utils/backgroundMusic';
 import mwAvatar from '../assets/mw-avatar.png';
 import { WELCOME_MESSAGE, READY_MESSAGE } from './config/messages';
 
@@ -105,7 +104,6 @@ export default function App() {
               onClick={() => {
                 warmUpAudio();
                 unlockIntroAudio();
-                void startBackgroundMusic();
                 setQuizSession((n) => n + 1);
                 setView('quiz');
               }}
@@ -120,7 +118,6 @@ export default function App() {
             <button
               onClick={() => {
                 warmUpAudio();
-                void startBackgroundMusic();
                 setView('admin');
               }}
               className={`px-4 md:px-8 py-2 md:py-3 rounded-xl transition-all text-sm md:text-base ${

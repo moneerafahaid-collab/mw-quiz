@@ -13,6 +13,7 @@ import {
   resetTickTock,
   warmUpAudio,
 } from '../utils/quizSounds';
+import { startBackgroundMusic, stopBackgroundMusic } from '../utils/backgroundMusic';
 
 type QuizGameProps = {
   questions: Question[];
@@ -29,6 +30,12 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState(DEFAULT_TIME_LIMIT);
   const timedOutRef = useRef(false);
+
+  useEffect(() => {
+    if (gameState === 'finished') void startBackgroundMusic();
+  }, [gameState]);
+
+  useEffect(() => () => stopBackgroundMusic(), []);
 
   const currentQuestion = questions[currentQuestionIndex];
   const timeLimit = currentQuestion?.timeLimit ?? DEFAULT_TIME_LIMIT;
@@ -116,6 +123,7 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
   };
 
   const restartGame = () => {
+    stopBackgroundMusic();
     setHasStarted(false);
     setCurrentQuestionIndex(0);
     setScore(0);
@@ -145,6 +153,7 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
         readyMessage={quizSettings.readyMessage}
         onStart={() => {
           warmUpAudio();
+          stopBackgroundMusic();
           setHasStarted(true);
         }}
       />
