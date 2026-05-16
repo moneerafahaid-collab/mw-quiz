@@ -68,7 +68,7 @@ export default function App() {
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl overflow-hidden shadow-xl ring-2 ring-cyan-400/40 bg-slate-900 flex-shrink-0">
               <img
-                src="/images/mw-avatar.png"
+                src={`${import.meta.env.BASE_URL}images/mw-avatar.png`}
                 alt="MW"
                 className="w-full h-full object-cover"
               />
