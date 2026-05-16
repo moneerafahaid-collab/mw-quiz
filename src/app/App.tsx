@@ -27,7 +27,7 @@ export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
   readyMessage: READY_MESSAGE,
 };
 
-const SETTINGS_STORAGE_KEY = 'mw-quiz-settings';
+const SETTINGS_STORAGE_KEY = 'mw-quiz-settings-v2';
 
 function loadQuizSettings(): QuizSettings {
   try {
