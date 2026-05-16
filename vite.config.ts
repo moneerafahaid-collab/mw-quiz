@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 import { ttsPlugin } from './vite-tts-plugin'
 
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS ? '/mw-quiz/' : '/',
   plugins: [
     react(),
     tailwindcss(),
