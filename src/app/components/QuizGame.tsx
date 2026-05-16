@@ -170,7 +170,7 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="max-w-xl mx-auto"
+        className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto"
       >
         <motion.div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-5 md:p-8 border border-slate-700/50 shadow-2xl">
           <div className="text-center">
@@ -257,8 +257,8 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-4 md:p-6 border border-slate-700/50 shadow-2xl">
+    <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-5xl mx-auto">
+      <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-4 md:p-6 lg:p-8 border border-slate-700/50 shadow-2xl">
         {/* Progress Header */}
         <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
           <div className="flex items-center gap-2">
@@ -315,20 +315,21 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
           />
         </div>
 
-        {/* Robot Character */}
-        <div className="flex justify-center mb-3">
-          <RobotMW mood={gameState} size="sm" />
-        </div>
+        <div className="lg:grid lg:grid-cols-[minmax(130px,160px)_1fr] lg:gap-8 lg:items-start">
+          {/* Robot Character */}
+          <div className="flex justify-center mb-3 lg:mb-0 lg:sticky lg:top-4">
+            <RobotMW mood={gameState} size="sm" />
+          </div>
 
-        {/* Question */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentQuestion.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
+          {/* Question */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentQuestion.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
             <div className="bg-slate-900/30 rounded-xl p-4 md:p-5 mb-4 border border-slate-700/50">
               <h2 className="text-lg md:text-xl text-white text-center leading-relaxed">
                 {currentQuestion.question}
@@ -394,6 +395,7 @@ export default function QuizGame({ questions, quizSettings }: QuizGameProps) {
             </div>
           </motion.div>
         </AnimatePresence>
+        </div>
       </div>
     </div>
   );

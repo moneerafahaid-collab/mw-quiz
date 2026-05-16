@@ -81,7 +81,7 @@ export default function App() {
         <div className="absolute -bottom-8 left-20 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto p-4 md:p-6 h-full">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-3 sm:px-4 md:px-6 py-4 md:py-6 min-h-screen">
         {/* Header */}
         <div className="flex items-center justify-between mb-4 md:mb-6">
           <div className="flex items-center gap-4">

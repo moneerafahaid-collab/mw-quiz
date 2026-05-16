@@ -40,7 +40,7 @@ export default function QuizIntro({ welcomeMessage, readyMessage, onStart }: Qui
   useEffect(() => () => stopIntroSpeech(), []);
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
       <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl p-5 md:p-8 border border-slate-700/50 shadow-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

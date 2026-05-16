@@ -10,7 +10,11 @@ export default function RobotMW({ mood, size = 'md' }: RobotMWProps) {
   const compact = size === 'sm';
 
   return (
-    <div className={`relative inline-block ${compact ? 'scale-[0.68] origin-top -mb-8' : ''}`}>
+    <div
+      className={`relative inline-block ${
+        compact ? 'scale-[0.68] origin-top -mb-8 lg:scale-[0.55] lg:-mb-10' : ''
+      }`}
+    >
       {/* Floating Elements */}
       <AnimatePresence>
         {(mood === 'waiting' || mood === 'correct' || mood === 'happy') && (
